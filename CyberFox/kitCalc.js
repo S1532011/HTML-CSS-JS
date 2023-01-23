@@ -23,7 +23,6 @@ function addRow() {
         document.getElementById("r" + numRows + "b").disabled = true;
     }
     numRows++;
-    //addRowLineBreakInput(numRows);
     addRowTextInput("Item Name", numRows, "itemName", "kit-list-itemName");
     addRowTextInput("Amount in Pack", numRows, "amountInPack", "kit-list-amountInPack");
     addRowTextInput("Amount in Kit", numRows, "amountInKit", "kit-list-amountInKit");
@@ -33,19 +32,9 @@ function addRow() {
     }
 }
 
-/*function addRowLineBreakInput(rowNum) {
-    var br = document.createElement("br");
-    br.className = "li" + rowNum;
-    document.getElementById("kit-list-itemName").appendChild(br);
-    document.getElementById("kit-list-amountInPack").appendChild(br);
-    document.getElementById("kit-list-amountInKit").appendChild(br);
-    document.getElementById("kit-list-itemPrice").appendChild(br);
-}*/
-
 /** Function to add a new line to Output */
 function addRowLineBreakOutput(rowNum) {
     var br = document.createElement("br");
-    //br.className = "oli" + rowNum;
     document.getElementById("kit-calc-output-itemName").appendChild(br);
     document.getElementById("kit-calc-output-amountToBuy").appendChild(br);
     document.getElementById("kit-calc-output-cost").appendChild(br);
@@ -138,16 +127,12 @@ function addTwoPartStringToList(elementId, valueToSet1, valueToSet2, classes) {
 /** Function to calculate what the output should be based on the given input */
 function calculate() {
     var totalCost = 0;
-    //document.getElementById("testingId").innerHTML = document.getElementById("numKits").value;
-    //document.getElementById("testingId").innerHTML = getItemName(1);
     
     document.getElementById("kit-calc-output-itemName").innerHTML = "";
     document.getElementById("kit-calc-output-amountToBuy").innerHTML = "";
     document.getElementById("kit-calc-output-cost").innerHTML = "";
     
-    //var amountToBuy = document.getElementById("r1itemName").value + " " + document.getElementById("r1amountInPack").value + " " + document.getElementById("r1amountInKit").value + " " + document.getElementById("numKits").value;
     for(var i = 1; i <= numRows; i++) {
-    //let i = 1;
         if(checkForInvalidInput(i)) {
             outputItemName(i);
             outputAmountToBuy(i);
@@ -158,47 +143,10 @@ function calculate() {
         }
 	totalCost += getCost(i);
     }
-
-    /*var x = document.createElement("p");
-    x.className = "kit-calc-output-text kit-calc-output-line";
-    var stringTotalCost = document.createTextNode("----------	");
-    x.appendChild(stringTotalCost);
-    document.getElementById("kit-calc-output-amountToBuy").appendChild(x);
-    document.getElementById("kit-calc-output-cost").appendChild(x);*/
     
     totalCost = Math.round(totalCost * 100) / 100;
     addStringToList("kit-calc-output-amountToBuy", "Total Cost:", "kit-calc-output-text bold");
     addTwoPartStringToList("kit-calc-output-cost", "$", totalCost, "kit-calc-output-text bold");
-    
-    /*var z = document.createElement("p");
-    z.className = "kit-calc-output-text kit-calc-output-bold";
-    var dollarSign = document.createTextNode("Total Cost:");
-    z.appendChild(dollarSign);
-    z.style.bold = true;
-    document.getElementById("kit-calc-output-amountToBuy").appendChild(z);*/
-    
-    
-    /*var z = document.createElement("p");
-    z.className = "kit-calc-output-text kit-calc-output-bold";
-    var dollarSign = document.createTextNode("$");
-    z.appendChild(dollarSign);
-    var outputTotalCost = document.createTextNode(totalCost);
-    z.appendChild(outputTotalCost);
-    z.style.bold = true;
-    document.getElementById("kit-calc-output-cost").appendChild(z);*/
-
-
-    //var text = document.createTextNode("Tutorix is the best e-learning platform");
-    //tag.appendChild(text);
-    //var element = document.getElementById("kit-calc-output-itemName");
-    //element.appendChild(tag);
-   
-   
-   
-    //var x = document.createTextNode("hello\n");
-    //addRowLineBreakOutput(1);
-    //document.getElementById("kit-calc-output-itemName").appendChild(x);
-    //numToBuy = amountInKit * numberOfKits / amountInPack;
 }
 
 /** Function to get the name of an item */
@@ -228,12 +176,12 @@ function getAmountToBuy(rowNum) {
 
 /** Function to get the price of an item */
 function getItemPrice(rowNum) {
-    return parseFloat(document.getElementById("r" + rowNum +"itemPrice").value);
+    return Math.round(parseFloat(document.getElementById("r" + rowNum +"itemPrice").value) * 100);
 }
 
 /** Function to get the total cost of an item */
 function getCost(rowNum) {
-    return getAmountToBuy(rowNum) * getItemPrice(rowNum);
+    return Math.round(getAmountToBuy(rowNum) * getItemPrice(rowNum)) / 100;
 }
 
 /** Function to put the item name in output */
@@ -311,7 +259,7 @@ function save() {
         saveState.itemName.push(getItemName(i));
         saveState.amountInPack.push(getAmountInPack(i));
         saveState.amountInKit.push(getAmountInKit(i));
-        saveState.itemPrice.push(getItemPrice(i));
+        saveState.itemPrice.push(getItemPrice(i) / 100);
     }
     
     if(!localStorage.getItem("kitSaves")) {
@@ -324,14 +272,6 @@ function save() {
         kitSaves.push(saveState);
         localStorage.setItem("kitSaves", JSON.stringify(kitSaves));
     }
-    
-    //var saveStateJson = JSON.stringify(saveState);
-    //console.log(saveStateJson);
-    //saveState.itemName.push("glue");
-    //saveState.itemName.push("tape");
-    //console.log("hello");
-    //console.log(saveState.itemName[0]);
-    //console.log(saveState.itemName[1]);
 }
 
 /** Function to load a saved kit from localStorage */
@@ -442,45 +382,11 @@ function exportToJson() {
         saveState.itemName.push(getItemName(i));
         saveState.amountInPack.push(getAmountInPack(i));
         saveState.amountInKit.push(getAmountInKit(i));
-        saveState.itemPrice.push(getItemPrice(i));
+        saveState.itemPrice.push(getItemPrice(i) / 100);
     }
     
     saveFile("kit-calc-save-state.json", JSON.stringify(saveState))
 }
-/*function importJson() {
-    var i = window.document.createElement('INPUT');
-    i.setAttribute("type", "file");
-    i.id = "kit-calc-json-import";
-    // Append anchor to body.
-    document.body.appendChild(i);
-    i.click();
-    alert("1");
-    
-    const fs = require("fs");
-    fs.readFile(document.getElementById("kit-calc-json-import").value, "utf8", (err, jsonString) => {
-      if (err) {
-        alert("File read failed:");
-        return;
-      }
-      alert(jsonString);
-    });
-    document.body.removeChild(i);
-    
-    /*var saveState = JSON.parse(document.getElementById("kit-calc-json-import").text());
-    alert("1");
-    
-    if(!localStorage.getItem("kitSaves")) {
-        var kitSaves = [
-            saveState
-        ]
-        localStorage.setItem("kitSaves", JSON.stringify(kitSaves));
-    } else {
-        var kitSaves = JSON.parse(localStorage.getItem("kitSaves"));
-        kitSaves.push(saveState);
-        localStorage.setItem("kitSaves", JSON.stringify(kitSaves));
-    }
-    alert("yes");
-}*/
 
 /** Function to import a JSON kit save file from device */
 function importJson() {
