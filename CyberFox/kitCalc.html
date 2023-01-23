@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Cyber Fox - Kit Calculator</title>
+        <link rel="icon" href="fox.ico" type="image/icon type">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="style.css">
+        <script src="kitCalc.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+    </head>
+    <body onload="onStart()">
+        <!-- Navigation Bar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <!-- Website Logo -->
+            <a class="navbar-brand" href="index.html"><span class="cyber-fox-logo nav-title">Cyber Fox</span></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navigation Links -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <!-- Home -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    
+                    <!-- Products -->
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="products.html">All Products</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="kitCalc.html">Kit Calculator</a>
+                        </div>
+                    </li>
+                </ul>
+                
+                <!-- Search Bar (WIP) -->
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+
+        <!-- Main Content for Kit Calculator -->
+        <h1 class="kit-calc-title">Kit Calculator</h1>
+        <div class="kit-calc">
+            <!-- Area for input -->
+            <h3 class="kit-calc-title">Input</h3>
+            <div class="basic-column-control">
+                <!-- Input Buttons -->
+                <div class="kit-calc-button-container">
+                    <input id="numKits" class="text-box" placeholder="# of Kits">
+                    <!-- Add Row Button -->
+                    <button class="kit-calc-button" onclick="addRow()">Add row</button>
+                    <!-- Calculate Button -->
+                    <button class="kit-calc-button" onclick="calculate()">Calculate Price</button>
+                    <!-- Save Button -->
+                    <button class="kit-calc-button" onclick="save()">Save</button>
+                    <!-- Load Dropdown -->
+                    <div class="kit-calc-dropdown">
+                        <button onmouseover="toggleDropdown()" class="kit-calc-dropdown-button kit-calc-button">Load</button>
+                        <div class="kit-calc-full-dropdown-list">
+                            <div class="kit-calc-dropdown-column-control">
+                                <div id="kit-calc-load-list" class="kit-calc-dropdown-content"></div>
+                                <div id="kit-calc-dropdown-delete-buttons"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Reset Button: clear all rows -->
+    		        <button class="kit-calc-reset" onclick="clearAllRows()">Reset</button>
+                </div>
+                <!-- Dark Mode Button -->
+                <button id="kit-calc-dark-mode-toggle" class="kit-calc-button float-right" onclick="toggleDarkMode()">Dark Mode</button>
+            </div>
+            <div class="kit-calc-button-container">
+                <!-- Export to Raw Text Button -->
+                <button class="kit-calc-button" onclick="exportToRawText()">Export to Raw Text</button>
+                <!-- Export to JSON Button -->
+                <button class="kit-calc-button" onclick="exportToJson()">Export to JSON</button>
+                <!-- Import JSON Button -->
+                <label class="kit-calc-json-import-label kit-calc-button">
+                    Import JSON
+                    <input onchange="importJson()" type="file" class="kit-calc-button kit-calc-json-import" id="kit-calc-json-import" accept=".json"/>
+                </label>
+            </div>
+            <hr class="kit-calc-hr">
+            <div class="kit-calc-table-container">
+                <!-- Column labels for input rows -->
+                <div class="kit-calc-key-container-input">
+                    <h5 class="kit-calc-key-input">Item Name</h5>
+                    <h5 class="kit-calc-key-input">Amount in pack</h5>
+                    <h5 class="kit-calc-key-input">Amount in kit</h5>
+                    <h5 class="kit-calc-key-input">Item Price</h5>
+                </div>
+                <!-- List that rows for data input are added to -->
+                <div class="kit-list" id="kit-list">
+                    <div class="kit-list-itemName" id="kit-list-itemName"></div>
+                    <div class="kit-list-amountInPack" id="kit-list-amountInPack"></div>
+                    <div class="kit-list-amountInKit" id="kit-list-amountInKit"></div>
+                    <div class="kit-list-itemPrice" id="kit-list-itemPrice"></div>
+                    <div class="kit-list-deleteRowButton" id="kit-list-deleteRowButton"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Area for Output -->
+        <div class="kit-calc">
+            <h3 class="kit-calc-title">Output</h3>
+            <hr class="kit-calc-hr">
+            <div class="kit-calc-table-container">
+                <!-- Label for Output columns -->
+                <div class="kit-calc-key-container-output">
+                    <h5 class="kit-calc-key-output">Item Name</h5>
+                    <h5 class="kit-calc-key-output">Amount to Buy</h5>
+                    <h5 class="kit-calc-key-output">Cost</h5>
+                </div>
+                <!-- columns that output is appended to -->
+                <div class="kit-calc-output-container">
+                    <div class="kit-calc-output-list" id="kit-calc-output-itemName"></div>
+                    <div class="kit-calc-output-list" id="kit-calc-output-amountToBuy"></div>
+                    <div class="kit-calc-output-list" id="kit-calc-output-cost"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="container-fluid text-light bg-dark footer">
+            <footer>&copy; Copyright 2021 <i class="coral">Cyber Fox</i></footer>
+            <p>This website is the strict property of <i class="coral">Cyber Fox</i>. Any duplication of this websites content without consent from its owners is strictly forbidden.</p>
+        </div>
+    </body>
+</html>

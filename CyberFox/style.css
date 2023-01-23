@@ -1,0 +1,589 @@
+/** Main Content Container */
+.kit-calc {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    width: 98%;
+    height: auto;
+    border: 1px solid rgba(50, 50, 50, .3);
+    border-radius: 12px;
+    margin: 1% 1% 1% 1%;
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,0.3), 0 2px 2px 0 rgba(0,0,0,0.2);
+}
+
+/** Button for Kit Calculator */
+.kit-calc-button {
+    color: white;
+    margin: 4px;
+    width: auto;
+    background-color: #ff7f50;
+    border-radius: 6px;
+    border: 1.8px solid #ff4e0d;
+    height: 32px;
+    /*border: 1.8px solid #de6040;*/
+    transition-duration: 0.4s;
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,0.24), 0 2px 2px 0 rgba(0,0,0,0.19);
+}
+
+/** Button for Kit Calculator when hovered over */
+.kit-calc-button:hover {
+    color: #ff7f50;
+    background-color: #fff2ed;
+    border: 1.8px solid #ff7f50;
+}
+
+/** Button for Kit Calculator while Button is pressed */
+.kit-calc-button:active {
+    filter: brightness(105%);
+    transition-duration: 0.4s;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.24), 0 2px 2px 0 rgba(0,0,0,0.19);
+}
+
+/** Delete/Reset Button */
+.kit-calc-reset {
+    color: white;
+    background-color: #ff0000;
+    border-radius: 6px;
+    border: 1.8px solid #b30000;
+    margin: 4px;
+    width: auto;
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,0.24), 0 2px 2px 0 rgba(0,0,0,0.19);
+    transition-duration: 0.4s;
+    height: 32px;
+}
+
+/** Delete/Reset Button on hover */
+.kit-calc-reset:hover {
+    color: red;
+    background-color: #ffe5e5;
+    border: 1.8px solid #ff0000;
+    transition-duration: 0.4s;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.24), 0 2px 2px 0 rgba(0,0,0,0.19);
+}
+
+/** Delete/Reset Button while pressed */
+.kit-calc-reset:active {
+    filter: brightness(105%);
+    transition-duration: 0.4s;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.24), 0 2px 2px 0 rgba(0,0,0,0.19);
+}
+
+/** NumKits input */
+#numKits {
+    margin: 4px;
+    width: auto;
+}
+
+/** padding for the Dark Mode button  */
+#kit-calc-dark-mode-toggle {
+    margin-right: 50px;
+}
+
+/** Container for the Kit Calculator buttons */
+.kit-calc-button-container {
+    display: flex;
+    justify-content: left;
+    width: auto;
+    height: 40px;
+    font-size: calc(20% + 10px);
+}
+
+
+
+
+/** Container for the input labels */
+.kit-calc-key-container-input {
+    display: flex;
+    flex-direction: row;
+}
+
+/** Sizing for the Input labels */
+.kit-calc-key-input {
+    width: 200px;
+    margin: 2px;
+}
+
+/** Container for input data */
+.kit-calc-table-container {
+    width: auto;
+    float: left;
+    margin: 10px;
+}
+
+/** input data list formatting */
+.kit-list {
+    display: flex;
+    flex-direction: row;
+}
+
+/** object in input data list */
+.list-object {
+    width: 200px;
+}
+
+/** Text box input */
+.text-box {
+    margin: 2px;
+    border-radius: 6px;
+    border: 1.8px solid rgba(120, 120, 120, .4);
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,0.3), 0 2px 2px 0 rgba(0,0,0,0.2);
+    outline: none;
+}
+
+/** Text box input while selected */
+.text-box:focus {
+    filter: brightness(97%);
+    outline: none;
+}
+
+/** Formatting for all children of input "table" */
+.kit-list * {
+    display: flex;
+    flex-direction: column;
+}
+
+/** Padding for delete row button, due to not having a delete button for the first row */
+.kit-list-deleteRowButton {
+    padding-top: 34px;
+}
+
+
+
+/** Main content container for output */
+.kit-calc-output-container {
+    display: flex;
+    flex-direction: row;
+}
+
+/** Lst for output */
+.kit-calc-output-list {
+    width: 200px;
+    margin: 2px;
+}
+
+/** container for output labels */
+.kit-calc-key-container-output {
+    display: flex;
+    flex-direction: row;
+}
+
+/** Output labels */
+.kit-calc-key-output {
+    width: 200px;
+    margin: 2px;
+}
+
+/** Makes text bold */
+.bold {
+    font-weight: bold;
+}
+
+
+
+
+
+/** Delete row button */
+.delete-row-button {
+    color: white;
+    background-color: #ff0000;
+    border-radius: 6px;
+    width: 25px;
+    border: 1.8px solid #b30000;
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,0.3), 0 2px 2px 0 rgba(0,0,0,0.2);
+    transition-duration: 0.4s;
+    margin: 2px;
+}
+
+/** Delete row button while hovered over and is clickable */
+.delete-row-button:hover:enabled {
+    color: red;
+    background-color: #ffe5e5;
+    border: 1.8px solid #ff0000;
+    transition-duration: 0.4s;
+}
+
+/** Delete row button while pressed and is clickable */
+.delete-row-button:active:enabled {
+    filter: brightness(105%);
+    transition-duration: 0.4s;
+}
+
+/** Delete row button while hovered over and isn't clickable */
+.delete-row-button:hover:disabled {
+    filter: brightness(70%);
+    transition-duration: 0.4s;
+}
+
+/** Delete row button while isn't clickable */
+.delete-row-button:disabled {
+    /*color: #000000;
+    background-color: #bf4040;
+    border: 1.8px solid #682323;*/
+    filter: brightness(80%);
+}
+
+/** Shadowing for input and output titles */
+.kit-calc-title {
+    margin: 1%;
+    text-shadow: 0.2px 0.2px 0 #111, 0.4px 0.4px 0 #222, 0.6px 0.6px #333, 0.8px 0.8px #444, 1px 1px #555, 1.2px 1.2px #666, 1.4px 1.4px #777, 1.6px 1.6px #888, 1.8px 1.8px #999, 2px 2px #aaa;
+}
+
+/** Horizontal rulings */
+.kit-calc-hr {
+    width: 100%;
+    background-color: rgba(50, 50, 50, .3);
+    box-shadow: 0 1px 1px 0 rgba(70,70,70,0.2), 0 1px 1px 0 rgba(70,70,70,0.2);
+    margin: 2px 0px 2px 0px;
+    padding: 0px;
+    text-align: left;
+}
+
+
+
+/** Set font for navbar */
+nav {
+    font-family: 'Merriweather', serif;
+}
+/*.navbar {
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    display: overlay;
+}*/
+/** set text color to coral */
+.coral {
+    color: #ff7f50;
+}
+
+/** Orange border shadow */
+.orange-shadowed-border {
+  border: 1px solid #ffa500;
+  box-shadow: 0 1.8px 0 0 #ffa500;
+}
+
+/** Large box */
+.large-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 4% 10% 4% 10%;
+}
+
+/** Set info content to half screen width */
+.info {
+    width: 50%;
+}/*
+.info h1 {
+    font-size: calc(100% + 2vw);
+}
+.info p {
+    font-size: calc(50% + 1vw);
+}*/
+
+/** Copyright footer */
+.footer {
+    font-size: calc(40% + 0.7vw);
+    padding-top: 10px;
+    height: 70px;
+    font-family: 'Merriweather', serif;
+}
+
+/** Website logo when hovered over */
+.nav-title:hover {
+    margin-left: 2px;
+    margin-right: -2px;
+    transition:all .4s ease;
+    text-shadow: 0.2px 0px 0 #862400, 0.4px 0.1px 0 #972800, 0.6px 0.2px 0 #a72d00, 0.8px 0.3px 0 #b83100, 1px 0.4px 0 #c93600, 1.2px 0.5px 0 #da3a00, 1.4px 0.6px 0 #ea3f00, 1.4px 0.6px 1px #000;
+}
+
+/** Website logo */
+.nav-title {
+    font-size: calc(100% + 0.5vw);
+    color: #ff662e;
+    transition-duration: 0.6s;
+    text-shadow: 0.2px 0px 0 #862400, 0.4px 0.1px 0 #972800, 0.6px 0.2px 0 #a72d00, 0.8px 0.3px 0 #b83100, 1px 0.4px 0 #c93600, 1.2px 0.5px 0 #da3a00, 1.4px 0.6px 0 #ea3f00, 1.8px 0.8px 5px #000;
+}
+
+/** Weird animation when clicking and holding on image on index.html */
+.animate:active {
+    overflow: overlay;
+    position: relative;
+    animation: animation1 linear 0.5s infinite 1s;
+}
+
+/** animation for .animate class */
+@keyframes animation1 
+{
+    0% {right: 0px;}
+    25% {right: 3px;}
+    50% {right: 0px;}
+    75% {right: -3px;}
+    100% {right: 0px;}
+}
+/** Color change for selected text */
+::selection {
+    filter: brightness(80%);
+    background-color: rgba(201, 54, 0, 0.3);
+    text-shadow: 0px 0px 5px rgba(255, 127, 80, 0.5);
+    filter: invert(9)
+}
+
+/** Body formatting */
+body {
+    width: 100%;
+    overflow: overlay;
+}
+
+/** Modify side Scrollbar */
+body::-webkit-scrollbar {
+    margin-top: 50px;
+    position: absolute;
+    top: calc(90%);
+    width: 10px;
+    left:-100px;
+    background-color: transparent;
+}
+
+/** Modify the moving part of the scrollbar */
+body::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 14px 14px #bbbbbe;
+    height: 100px;
+    border: solid 2px transparent;
+    border-radius: 14px;
+    /*background-color: #333;
+    border-radius: 10rem;
+    border: 1px solid #555;*/
+}
+
+/** Change color while hovering over scrollbar */
+body::-webkit-scrollbar-thumb:hover {
+    border: solid 1.8px transparent;
+    box-shadow: inset 0 0 14px 14px #cccccf;
+    
+    /*background-color: #333;
+    border-radius: 10rem;
+    border: 1px solid #555;*/
+}
+
+/** Hide start of scrollbar */
+body::-webkit-scrollbar-track-piece:start {
+    background: transparent;
+}
+
+/** Hide end of scrollbar */
+body::-webkit-scrollbar-track-piece:end {
+    background: transparent;
+}
+
+
+
+
+
+
+
+
+/** Dropdown formatting */
+.kit-calc-dropdown {
+    position: relative;
+    display: inline-block;
+    height: 40px;
+    padding: 0px;
+}
+
+/** formatting for dropdown items */
+.kit-calc-full-dropdown-list {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 200px;
+    min-height: 20px;
+    box-shadow: 0px 2px 2px 0px rgba(50, 50, 50,0.3);
+    z-index: 1;
+    padding: 1px;
+}
+
+/** puts dropdown items into a column */
+.kit-calc-dropdown-column-control {
+    display: flex;
+    flex-direction: row;
+}
+
+/** item in a dropdown */
+.kit-calc-dropdown-item {
+    color: white;
+    width: 165px;
+    margin: 2px;
+    background-color: #ff7f50;
+    border-radius: 6px;
+    border: 1.8px solid #ff4e0d;
+    transition-duration: 0.4s;
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,0.24), 0 2px 2px 0 rgba(0,0,0,0.19);
+}
+
+/** Item in a dropdown while hovered over */
+.kit-calc-dropdown-item:hover {
+    color: #ff7f50;
+    background-color: #fff2ed;
+    border: 1.8px solid #ff7f50;
+}
+
+/** Item in a dropdown while pressed */
+.kit-calc-dropdown-item:active {
+    filter: brightness(105%);
+    transition-duration: 0.4s;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.24), 0 2px 2px 0 rgba(0,0,0,0.19);
+}
+
+/** Show the dropdown while hovered over */
+.kit-calc-dropdown:hover .kit-calc-full-dropdown-list {
+    display: block;
+    border: 1px solid rgba(50, 50, 50, 0.3);
+    border-radius: 6px;
+    padding 0px;
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,0.3), 0 2px 2px 0 rgba(0,0,0,0.2);
+    background-color: #f2f2f2;
+}
+
+/** Hide file input document appending */
+input[type="file"] {
+    display: none;
+}
+/** Center the label on the Import from JSON button */
+.kit-calc-json-import-label {
+    padding: 5px 10px;
+}
+/*.kit-calc-json-import {
+    display: none;
+}
+
+    background-color: #212121;
+    background-color: #121212;
+    color: white;
+
+
+
+*/
+
+/** Dark Mode */
+.dark-mode {
+    color: #e6e6e6;
+    background-color: #121212;
+}
+
+/** Dark Mode for Kit Calculator Buttons */
+.dark-mode .kit-calc-button {
+    background-color: rgba(72, 72, 72, 0.4);
+    border: 1.8px solid rgba(87, 87, 87, 0.4);
+}
+
+/** Dark Mode for Kit Calculator Buttons while hovered over */
+.dark-mode .kit-calc-button:hover {
+    background-color: rgba(72, 72, 72, 1);
+    border: 1.8px solid rgba(87, 87, 87, 1);
+    color: white;
+}
+
+/** Dark Mode for Kit Calculator Dropdown items */
+.dark-mode .kit-calc-dropdown-item {
+    background-color: rgba(72, 72, 72, 0.4);
+    border: 1.8px solid rgba(87, 87, 87, 0.4);
+}
+
+/** Dark Mode for Kit Calculator Dropdown items while hovered over */
+.dark-mode .kit-calc-dropdown-item:hover {
+    background-color: rgba(72, 72, 72, 1);
+    border: 1.8px solid rgba(87, 87, 87, 1);
+    color: white;
+}
+
+/** Dark Mode for Kit Calculator Delete Row Buttons */
+.dark-mode .delete-row-button {
+    background-color: rgba(255, 0, 0, 0.4);
+    border: 1.8px solid rgba(255, 0, 0, 0.5);
+}
+
+/** Dark Mode for Kit Calculator Delete Row Buttons while hovered over */
+.dark-mode .delete-row-button:hover {
+    background-color: rgba(255, 0, 0, 0.5);
+    border: 1.8px solid rgba(255, 0, 0, 0.6);
+    color: white;
+}
+
+/** Dark Mode for Kit Calculator Reset Button */
+.dark-mode .kit-calc-reset {
+    background-color: rgba(255, 0, 0, 0.4);
+    border: 1.8px solid rgba(255, 0, 0, 0.5);
+}
+/** Dark Mode for Kit Calculator Reset Button while hovered over */
+.dark-mode .kit-calc-reset:hover {
+    background-color: rgba(255, 0, 0, 0.5);
+    border: 1.8px solid rgba(255, 0, 0, 0.6);
+    color: white;
+}
+
+/** Dark Mode for background of dropdown */
+.dark-mode .kit-calc-full-dropdown-list {
+    background-color: #393939 !important;
+}
+
+/** Dark Mode for Main Content background */
+.dark-mode .kit-calc {
+    background-color: #212121;
+}
+
+/** Dark Mode for Title Text */
+.dark-mode .kit-calc-title {
+    margin: 1%;
+    text-shadow: 0.2px 0.2px 0 #aaa, 0.4px 0.4px 0 #999, 0.6px 0.6px #888, 0.8px 0.8px #777, 1px 1px #666, 1.2px 1.2px #555, 1.4px 1.4px #444, 1.6px 1.6px #333, 1.8px 1.8px #222, 2px 2px #111;
+}
+
+/** Dark Mode for Horizontal Rulings */
+.dark-mode .kit-calc-hr {
+    width: 100%;
+    background-color: rgba(100, 100, 100, .3);
+    box-shadow: 0 1px 1px 0 rgba(70,70,70,0.2), 0 1px 1px 0 rgba(70,70,70,0.2);
+    margin: 2px 0px 2px 0px;
+    padding: 0px;
+    text-align: left;
+}
+
+/** Dark Mode for Text Boxes */
+.dark-mode .text-box {
+    background-color: #303030;
+    color: white;
+    outline: none;
+}
+
+/** Dark Mode for Text Boxes while selected */
+.dark-mode .text-box:focus {
+    filter: brightness(120%);
+    outline: none;
+}
+
+/** Align Content to the right of the screen */
+.float-right {
+    float: right;
+}
+
+/** Order the items in a parent element into a column */
+.basic-column-control {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+/** Make an element invisible */
+.hide {
+    display: none;
+}
+
+
+
+
+
+
+
+
+
+
+/*Work Space*/
