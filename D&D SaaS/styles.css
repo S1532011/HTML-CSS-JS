@@ -1,0 +1,66 @@
+/* Positional Formatting Styles */
+body {
+    font: 100% system-ui;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+#character_sheet {
+    margin: auto;
+    padding: 12px;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80%;
+    height: auto;
+    background-color: var(--main-accent0);
+}
+
+#character_sheet_list {
+    padding: 12px;
+    border-radius: 6px;
+    height: auto;
+    background-color: var(--main-accent1);
+}
+
+#character_sheet_pdf {
+    padding: 12px;
+    border-radius: 6px;
+    width: 800px;
+    height: 1000px;
+    background-color: var(--main-accent1);
+}
+
+/* Light Mode Styles */
+@media(prefers-color-scheme: light) {
+    :root {
+        --bg-color: #fff;
+        --text-color: #222;
+        --main-accent0: #222;
+        --main-accent1: #eee;
+        --main-accent2: #eee;
+        --headline-font: Ubuntu;
+    }
+}
+
+/* Dark Mode Styles */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #111;
+        --main-accent0: hsl(165, 100%, 50%);
+        --main-accent1: hsl(165, 100%, 90%); 
+        --main-accent2: hsl(165, 100%, 90%); 
+        --headline-font: Ubuntu;
+    }
+    body {
+        color: #eee;
+        background-color: #111;
+    }
+    #character_sheet {
+        background-color: #222;
+    }
+    #character_sheet_list {
+        background-color: #333;
+    }
+}
